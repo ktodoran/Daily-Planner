@@ -1,106 +1,89 @@
 // Variable to store and loop through the Scheduler
-var myDay = [
-    {
-        id: "0",
-        hour: "09",
-        time: "09",
-        meridiem: "am",
-        reminder: ""
-    },
-    {
-        id: "1",
-        hour: "10",
-        time: "10",
-        meridiem: "am",
-        reminder: ""
-    },
-    {
-        id: "2",
-        hour: "11",
-        time: "11",
-        meridiem: "am",
-        reminder: ""
-    },
-    {
-        id: "3",
-        hour: "12",
-        time: "12",
-        meridiem: "pm",
-        reminder: ""
-    },
-    {
-        id: "4",
-        hour: "01",
-        time: "13",
-        meridiem: "pm",
-        reminder: ""
-    },
-    {
-        id: "5",
-        hour: "02",
-        time: "14",
-        meridiem: "pm",
-        reminder: ""
-    },
-    {
-        id: "6",
-        hour: "03",
-        time: "15",
-        meridiem: "pm",
-        reminder: ""
-    },
-    {
-        id: "7",
-        hour: "04",
-        time: "16",
-        meridiem: "pm",
-        reminder: ""
-    },
-    {
-        id: "8",
-        hour: "05",
-        time: "17",
-        meridiem: "pm",
-        reminder: ""
-    },
+var theDay = [
     
+    {id: "0",
+     hour: "09",
+     time: "09",
+     meridiem: "am",
+     reminder: ""},
+    
+    {id: "1",
+    hour: "10",
+    time: "10",
+    meridiem: "am",
+    reminder: ""},
+    
+    {id: "2",
+    hour: "11",
+    time: "11",
+    meridiem: "am",
+    reminder: ""},
+    
+    {id: "3",
+    hour: "12",
+    time: "12",
+    meridiem: "pm",
+    reminder: ""},
+    
+    {id: "4",
+    hour: "01",
+    time: "13",
+    meridiem: "pm",
+    reminder: ""},
+    
+    {id: "5",
+    hour: "02",
+    time: "14",
+    meridiem: "pm",
+    reminder: ""},
+    
+    {id: "6",
+    hour: "03",
+    time: "15",
+    meridiem: "pm",
+    reminder: ""},
+    
+    {id: "7",
+    hour: "04",
+    time: "16",
+    meridiem: "pm",
+    reminder: ""},
+    
+    {id: "8",
+    hour: "05",
+    time: "17",
+    meridiem: "pm",
+    reminder: ""},
 ]
-
-// Gets the Date for the Day
-function getHeaderDate() {
+// Sets the Date for the Day
+function getDate() {
     var currentHeaderDate = moment().format('dddd, MMMM Do');
     $("#currentDay").text(currentHeaderDate);
 }
-
 // Saves entries to localStorage
-function saveReminders() {
-    localStorage.setItem("myDay", JSON.stringify(myDay));
+function saveEntries() {
+    localStorage.setItem("theDay", JSON.stringify(theDay));
 }
-
-// Sets data in localStorage to the hour
-function displayReminders() {
-    myDay.forEach(function (_thisHour) {
+// Gets entries that were saved to localStorage
+function displayEntries() {
+    theDay.forEach(function (_thisHour) {
         $(`#${_thisHour.id}`).val(_thisHour.reminder);
     })
 }
-
-// sets any existing localStorage data to the view if it exists
+// Function that displays saved entries from localStorage
 function init() {
-    var storedDay = JSON.parse(localStorage.getItem("myDay"));
-
+    var storedDay = JSON.parse(localStorage.getItem("theDay"));
     if (storedDay) {
-        myDay = storedDay;
+        theDay = storedDay;
     }
-
-    saveReminders();
-    displayReminders();
+    saveEntries();
+    displayEntries();
 }
-
-// Displays the Header Date
-getHeaderDate();
+// Displays the Date
+getDate();
 
 // Functions for Creating and Displaying the Actual Scheduler
-myDay.forEach(function(thisHour) {
+theDay.forEach(function(thisHour) {
     // Creates row for the "Time Blocks"
     var hourRow = $("<form>").attr({
         "class": "row"
@@ -114,7 +97,7 @@ myDay.forEach(function(thisHour) {
             "class": "col-md-2 hour"
     });
 
-    // creates schdeduler data
+    // Sets the Colors Based on the Times of Day
     var hourPlan = $("<div>")
         .attr({
             "class": "col-md-9 description p-0"
@@ -136,8 +119,8 @@ myDay.forEach(function(thisHour) {
         })
     }
 
-    // creates save button
-    var saveButton = $("<i class='far fa-save fa-lg'></i>")
+    // Save Button Creation
+    var saveButton = $("<i class='fas fa-save fa-lg'></i>")
     var savePlan = $("<button>")
         .attr({
             "class": "col-md-1 saveBtn"
@@ -146,16 +129,16 @@ myDay.forEach(function(thisHour) {
     hourRow.append(hourField, hourPlan, savePlan);
 })
 
-// loads any existing localstorage data after components created
+// Calls to get any and all saved entries from localStorage
 init();
 
 
-// saves data to be used in localStorage
+// Function for saving entries to localStorage
 $(".saveBtn").on("click", function(event) {
     event.preventDefault();
     var saveIndex = $(this).siblings(".description").children(".future").attr("id");
-    myDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+    theDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
     console.log(saveIndex);
-    saveReminders();
-    displayReminders();
+    saveEntries();
+    displayEntries();
 })
