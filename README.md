@@ -1,5 +1,5 @@
 # My Daily Planner
-![ScreenShot of Project](https://user-images.githubusercontent.com/79175595/116831161-a905f880-ab7b-11eb-972f-ba7cacb2a7d4.jpg)
+![ScreenShot of Project](assets/ScreenshotofProject.jpg)
 
 
 Link to website: https://ktodoran.github.io/Daily-Planner/
