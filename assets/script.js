@@ -136,8 +136,8 @@ init();
 // Function for saving entries to localStorage
 $(".saveBtn").on("click", function(event) {
     event.preventDefault();
-    var saveIndex = $(this).siblings(".description").children(".future").attr("id");
-    theDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+    var saveIndex = $(this).siblings(".description").children(".past, .present, .future").attr("id");
+    theDay[saveIndex].reminder = $(this).siblings(".description").children(".past, .present, .future").val();
     console.log(saveIndex);
     saveEntries();
     displayEntries();

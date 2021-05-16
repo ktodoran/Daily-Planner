@@ -2,7 +2,7 @@ body {
     font-family: fantasy;
     font-size: 16px;
     line-height: 1;
-    background-color: lightslategrey;
+    background-color: slategray;
 }
 
 textarea{
@@ -40,13 +40,13 @@ textarea{
   }
   
   .hour {
-    background-color: lightskyblue;
+    background-color: lightpink;
     color: #000000;
     border-top: 1px dashed #000000;
   }
   
   .past {
-    background-color: #21425a;
+    background-color: blue;
     color: white;
   }
   
@@ -56,7 +56,7 @@ textarea{
   }
   
   .future {
-    background-color: tan;
+    background-color: yellow;
     color: black;
   }
   
@@ -64,7 +64,7 @@ textarea{
     border: 3px solid black;
     border-left: 3px solid black;
     border-radius: 15px;
-    background-color: #3ab554;
+    background-color: lightskyblue;
     color: white;
     padding-top: 1.75rem;
     padding-bottom: 1.75rem; 
